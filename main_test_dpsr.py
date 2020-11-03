@@ -16,11 +16,9 @@ from utils import utils_model
 Spyder (Python 3.6)
 PyTorch 1.1.0
 Windows 10 or Linux
-
 Kai Zhang (cskaizhang@gmail.com)
 github: https://github.com/cszn/KAIR
         https://github.com/cszn/DPSR
-
 @inproceedings{zhang2019deep,
   title={Deep Plug-and-Play Super-Resolution for Arbitrary Blur Kernels},
   author={Zhang, Kai and Zuo, Wangmeng and Zhang, Lei},
@@ -28,10 +26,8 @@ github: https://github.com/cszn/KAIR
   pages={1671--1681},
   year={2019}
 }
-
 % If you have any question, please feel free to contact with me.
 % Kai Zhang (e-mail: cskaizhang@gmail.com; github: https://github.com/cszn)
-
 by Kai Zhang (12/Dec./2019)
 '''
 
@@ -66,8 +62,8 @@ def main():
     noise_level_img = 0                  # default: 0, noise level for LR image
     noise_level_model = noise_level_img  # noise level for model    
     model_name = 'dpsr_x4_gan'           # 'dpsr_x2' | 'dpsr_x3' | 'dpsr_x4' | 'dpsr_x4_gan'
-    testset_name = 'test'                # test set,  'set5' | 'srbsd68'
-    need_degradation = False              # default: True
+    testset_name = 'set5'                # test set,  'set5' | 'srbsd68'
+    need_degradation = True              # default: True
     x8 = False                           # default: False, x8 to boost performance
     sf = [int(s) for s in re.findall(r'\d+', model_name)][0]  # scale factor
     show_img = False                     # default: False
