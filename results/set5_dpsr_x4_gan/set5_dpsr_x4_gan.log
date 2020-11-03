@@ -1,0 +1,11 @@
+20-11-03 21:42:35.289 : Model path: model_zoo/dpsr_x4_gan.pth
+20-11-03 21:42:35.289 : Params number: 3493824
+20-11-03 21:42:35.289 : model_name:dpsr_x4_gan, model sigma:0, image sigma:0
+20-11-03 21:42:35.289 : testsets/set5
+20-11-03 21:42:35.600 : baby.bmp - PSNR: 28.87 dB; SSIM: 0.7896.
+20-11-03 21:42:35.804 : bird.bmp - PSNR: 29.06 dB; SSIM: 0.8556.
+20-11-03 21:42:35.979 : butterfly.bmp - PSNR: 24.23 dB; SSIM: 0.8307.
+20-11-03 21:42:36.115 : head.bmp - PSNR: 27.84 dB; SSIM: 0.6405.
+20-11-03 21:42:36.205 : woman.bmp - PSNR: 26.39 dB; SSIM: 0.8439.
+20-11-03 21:42:36.227 : Average PSNR/SSIM(RGB) - set5_dpsr_x4_gan - x4 --PSNR: 27.28 dB; SSIM: 0.7921
+20-11-03 21:42:36.227 : Average PSNR/SSIM( Y ) - set5_dpsr_x4_gan - x4 - PSNR: 29.35 dB; SSIM: 0.8441
