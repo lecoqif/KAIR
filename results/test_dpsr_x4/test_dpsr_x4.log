@@ -1,0 +1,4 @@
+20-11-03 22:59:33.811 : Model path: model_zoo/dpsr_x4.pth
+20-11-03 22:59:33.812 : Params number: 3493824
+20-11-03 22:59:33.812 : model_name:dpsr_x4, model sigma:100, image sigma:100
+20-11-03 22:59:33.812 : testsets/test
