@@ -59,7 +59,7 @@ def main():
     # Preparation
     # ----------------------------------------
 
-    noise_level_img = 0                  # default: 0, noise level for LR image
+    noise_level_img = 100                  # default: 0, noise level for LR image
     noise_level_model = noise_level_img  # noise level for model    
     model_name = 'dpsr_x4'           # 'dpsr_x2' | 'dpsr_x3' | 'dpsr_x4' | 'dpsr_x4_gan'
     testset_name = 'test'                # test set,  'set5' | 'srbsd68'
