@@ -2,3 +2,11 @@
 20-11-03 23:00:57.019 : Params number: 3493824
 20-11-03 23:00:57.020 : model_name:dpsr_x4, model sigma:0, image sigma:0
 20-11-03 23:00:57.020 : testsets/test
+20-11-03 23:04:02.634 : Model path: model_zoo/dpsr_x4.pth
+20-11-03 23:04:02.635 : Params number: 3493824
+20-11-03 23:04:02.635 : model_name:dpsr_x4, model sigma:0, image sigma:0
+20-11-03 23:04:02.635 : testsets/test
+20-11-03 23:16:56.787 : Model path: model_zoo/dpsr_x4.pth
+20-11-03 23:16:56.788 : Params number: 3493824
+20-11-03 23:16:56.788 : model_name:dpsr_x4, model sigma:0, image sigma:0
+20-11-03 23:16:56.788 : testsets/test
