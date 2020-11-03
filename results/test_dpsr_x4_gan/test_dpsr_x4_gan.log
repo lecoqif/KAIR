@@ -1,0 +1,7 @@
+20-11-03 22:09:25.777 : Model path: model_zoo/dpsr_x4_gan.pth
+20-11-03 22:09:25.777 : Params number: 3493824
+20-11-03 22:09:25.777 : model_name:dpsr_x4_gan, model sigma:0, image sigma:0
+20-11-03 22:09:25.777 : testsets/test
+20-11-03 22:09:26.210 : DSC_0076.bmp - PSNR: 39.80 dB; SSIM: 0.9518.
+20-11-03 22:09:26.313 : Average PSNR/SSIM(RGB) - test_dpsr_x4_gan - x4 --PSNR: 39.80 dB; SSIM: 0.9518
+20-11-03 22:09:26.313 : Average PSNR/SSIM( Y ) - test_dpsr_x4_gan - x4 - PSNR: 42.41 dB; SSIM: 0.9732
