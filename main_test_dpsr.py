@@ -59,12 +59,12 @@ def main():
     # Preparation
     # ----------------------------------------
 
-    noise_level_img = 0                  # default: 0, noise level for LR image
+    noise_level_img = 5                  # default: 0, noise level for LR image
     noise_level_model = noise_level_img  # noise level for model    
     model_name = 'dpsr_x4_gan'           # 'dpsr_x2' | 'dpsr_x3' | 'dpsr_x4' | 'dpsr_x4_gan'
-    testset_name = 'set5'                # test set,  'set5' | 'srbsd68'
-    need_degradation = True              # default: True
-    x8 = False                           # default: False, x8 to boost performance
+    testset_name = 'test'                # test set,  'set5' | 'srbsd68'
+    need_degradation = False              # default: True
+    x8 = True                           # default: False, x8 to boost performance
     sf = [int(s) for s in re.findall(r'\d+', model_name)][0]  # scale factor
     show_img = False                     # default: False
 
@@ -96,7 +96,7 @@ def main():
     utils_logger.logger_info(logger_name, log_path=os.path.join(E_path, logger_name+'.log'))
     logger = logging.getLogger(logger_name)
 
-    need_H = True if H_path is not None else False
+    need_H = False
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     # ----------------------------------------
