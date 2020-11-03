@@ -64,7 +64,7 @@ def main():
     model_name = 'dpsr_x4'           # 'dpsr_x2' | 'dpsr_x3' | 'dpsr_x4' | 'dpsr_x4_gan'
     testset_name = 'test'                # test set,  'set5' | 'srbsd68'
     need_degradation = True              # default: True
-    x8 = False                           # default: False, x8 to boost performance
+    x8 = True                           # default: False, x8 to boost performance
     sf = [int(s) for s in re.findall(r'\d+', model_name)][0]  # scale factor
     show_img = False                     # default: False
 
