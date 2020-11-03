@@ -66,8 +66,8 @@ def main():
     noise_level_img = 0                  # default: 0, noise level for LR image
     noise_level_model = noise_level_img  # noise level for model    
     model_name = 'dpsr_x4_gan'           # 'dpsr_x2' | 'dpsr_x3' | 'dpsr_x4' | 'dpsr_x4_gan'
-    testset_name = 'set5'                # test set,  'set5' | 'srbsd68'
-    need_degradation = True              # default: True
+    testset_name = 'test'                # test set,  'set5' | 'srbsd68'
+    need_degradation = False              # default: True
     x8 = False                           # default: False, x8 to boost performance
     sf = [int(s) for s in re.findall(r'\d+', model_name)][0]  # scale factor
     show_img = False                     # default: False
@@ -94,13 +94,13 @@ def main():
     E_path = os.path.join(results, result_name)   # E_path, for Estimated images
     util.mkdir(E_path)
 
-    if H_path == L_path:
-        need_degradation = True
+    # if H_path == L_path:
+    #     need_degradation = True
     logger_name = result_name
     utils_logger.logger_info(logger_name, log_path=os.path.join(E_path, logger_name+'.log'))
     logger = logging.getLogger(logger_name)
 
-    need_H = True if H_path is not None else False
+    # need_H = True if H_path is not None else False
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     # ----------------------------------------
@@ -127,7 +127,7 @@ def main():
     logger.info('model_name:{}, model sigma:{}, image sigma:{}'.format(model_name, noise_level_img, noise_level_model))
     logger.info(L_path)
     L_paths = util.get_image_paths(L_path)
-    H_paths = util.get_image_paths(H_path) if need_H else None
+    # H_paths = util.get_image_paths(H_path) if need_H else None
 
     for idx, img in enumerate(L_paths):
 
@@ -165,34 +165,34 @@ def main():
 
         img_E = util.tensor2uint(img_E)
 
-        if need_H:
+        # if need_H:
 
-            # --------------------------------
-            # (3) img_H
-            # --------------------------------
+        #     # --------------------------------
+        #     # (3) img_H
+        #     # --------------------------------
 
-            img_H = util.imread_uint(H_paths[idx], n_channels=n_channels)
-            img_H = img_H.squeeze()
-            img_H = util.modcrop(img_H, sf)
+        #     img_H = util.imread_uint(H_paths[idx], n_channels=n_channels)
+        #     img_H = img_H.squeeze()
+        #     img_H = util.modcrop(img_H, sf)
 
-            # --------------------------------
-            # PSNR and SSIM
-            # --------------------------------
+        #     # --------------------------------
+        #     # PSNR and SSIM
+        #     # --------------------------------
 
-            psnr = util.calculate_psnr(img_E, img_H, border=border)
-            ssim = util.calculate_ssim(img_E, img_H, border=border)
-            test_results['psnr'].append(psnr)
-            test_results['ssim'].append(ssim)
-            logger.info('{:s} - PSNR: {:.2f} dB; SSIM: {:.4f}.'.format(img_name+ext, psnr, ssim))
-            util.imshow(np.concatenate([img_E, img_H], axis=1), title='Recovered / Ground-truth') if show_img else None
+        #     psnr = util.calculate_psnr(img_E, img_H, border=border)
+        #     ssim = util.calculate_ssim(img_E, img_H, border=border)
+        #     test_results['psnr'].append(psnr)
+        #     test_results['ssim'].append(ssim)
+        #     logger.info('{:s} - PSNR: {:.2f} dB; SSIM: {:.4f}.'.format(img_name+ext, psnr, ssim))
+        #     util.imshow(np.concatenate([img_E, img_H], axis=1), title='Recovered / Ground-truth') if show_img else None
 
-            if np.ndim(img_H) == 3:  # RGB image
-                img_E_y = util.rgb2ycbcr(img_E, only_y=True)
-                img_H_y = util.rgb2ycbcr(img_H, only_y=True)
-                psnr_y = util.calculate_psnr(img_E_y, img_H_y, border=border)
-                ssim_y = util.calculate_ssim(img_E_y, img_H_y, border=border)
-                test_results['psnr_y'].append(psnr_y)
-                test_results['ssim_y'].append(ssim_y)
+        #     if np.ndim(img_H) == 3:  # RGB image
+        #         img_E_y = util.rgb2ycbcr(img_E, only_y=True)
+        #         img_H_y = util.rgb2ycbcr(img_H, only_y=True)
+        #         psnr_y = util.calculate_psnr(img_E_y, img_H_y, border=border)
+        #         ssim_y = util.calculate_ssim(img_E_y, img_H_y, border=border)
+        #         test_results['psnr_y'].append(psnr_y)
+        #         test_results['ssim_y'].append(ssim_y)
 
         # ------------------------------------
         # save results
@@ -200,14 +200,14 @@ def main():
 
         util.imsave(img_E, os.path.join(E_path, img_name+'.png'))
 
-    if need_H:
-        ave_psnr = sum(test_results['psnr']) / len(test_results['psnr'])
-        ave_ssim = sum(test_results['ssim']) / len(test_results['ssim'])
-        logger.info('Average PSNR/SSIM(RGB) - {} - x{} --PSNR: {:.2f} dB; SSIM: {:.4f}'.format(result_name, sf, ave_psnr, ave_ssim))
-        if np.ndim(img_H) == 3:
-            ave_psnr_y = sum(test_results['psnr_y']) / len(test_results['psnr_y'])
-            ave_ssim_y = sum(test_results['ssim_y']) / len(test_results['ssim_y'])
-            logger.info('Average PSNR/SSIM( Y ) - {} - x{} - PSNR: {:.2f} dB; SSIM: {:.4f}'.format(result_name, sf, ave_psnr_y, ave_ssim_y))
+    # if need_H:
+    #     ave_psnr = sum(test_results['psnr']) / len(test_results['psnr'])
+    #     ave_ssim = sum(test_results['ssim']) / len(test_results['ssim'])
+    #     logger.info('Average PSNR/SSIM(RGB) - {} - x{} --PSNR: {:.2f} dB; SSIM: {:.4f}'.format(result_name, sf, ave_psnr, ave_ssim))
+    #     if np.ndim(img_H) == 3:
+    #         ave_psnr_y = sum(test_results['psnr_y']) / len(test_results['psnr_y'])
+    #         ave_ssim_y = sum(test_results['ssim_y']) / len(test_results['ssim_y'])
+    #         logger.info('Average PSNR/SSIM( Y ) - {} - x{} - PSNR: {:.2f} dB; SSIM: {:.4f}'.format(result_name, sf, ave_psnr_y, ave_ssim_y))
 
 if __name__ == '__main__':
 
