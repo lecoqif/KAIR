@@ -59,11 +59,11 @@ def main():
     # Preparation
     # ----------------------------------------
 
-    noise_level_img = 0                 # default: 0, noise level for LR image
+    noise_level_img = 32                 # default: 0, noise level for LR image
     noise_level_model = noise_level_img  # noise level for model    
     model_name = 'dpsr_x4'           # 'dpsr_x2' | 'dpsr_x3' | 'dpsr_x4' | 'dpsr_x4_gan'
     testset_name = 'test'                # test set,  'set5' | 'srbsd68'
-    need_degradation = True              # default: True
+    need_degradation = False              # default: True
     x8 = True                           # default: False, x8 to boost performance
     sf = [int(s) for s in re.findall(r'\d+', model_name)][0]  # scale factor
     show_img = False                     # default: False
