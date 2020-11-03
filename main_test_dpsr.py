@@ -94,13 +94,13 @@ def main():
     E_path = os.path.join(results, result_name)   # E_path, for Estimated images
     util.mkdir(E_path)
 
-    # if H_path == L_path:
-    #     need_degradation = True
+    if H_path == L_path:
+        need_degradation = True
     logger_name = result_name
     utils_logger.logger_info(logger_name, log_path=os.path.join(E_path, logger_name+'.log'))
     logger = logging.getLogger(logger_name)
 
-    need_H = False
+    need_H = True if H_path is not None else False
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     # ----------------------------------------
@@ -200,14 +200,14 @@ def main():
 
         util.imsave(img_E, os.path.join(E_path, img_name+'.png'))
 
-    # if need_H:
-    #     ave_psnr = sum(test_results['psnr']) / len(test_results['psnr'])
-    #     ave_ssim = sum(test_results['ssim']) / len(test_results['ssim'])
-    #     logger.info('Average PSNR/SSIM(RGB) - {} - x{} --PSNR: {:.2f} dB; SSIM: {:.4f}'.format(result_name, sf, ave_psnr, ave_ssim))
-    #     if np.ndim(img_H) == 3:
-    #         ave_psnr_y = sum(test_results['psnr_y']) / len(test_results['psnr_y'])
-    #         ave_ssim_y = sum(test_results['ssim_y']) / len(test_results['ssim_y'])
-    #         logger.info('Average PSNR/SSIM( Y ) - {} - x{} - PSNR: {:.2f} dB; SSIM: {:.4f}'.format(result_name, sf, ave_psnr_y, ave_ssim_y))
+    if need_H:
+        ave_psnr = sum(test_results['psnr']) / len(test_results['psnr'])
+        ave_ssim = sum(test_results['ssim']) / len(test_results['ssim'])
+        logger.info('Average PSNR/SSIM(RGB) - {} - x{} --PSNR: {:.2f} dB; SSIM: {:.4f}'.format(result_name, sf, ave_psnr, ave_ssim))
+        if np.ndim(img_H) == 3:
+            ave_psnr_y = sum(test_results['psnr_y']) / len(test_results['psnr_y'])
+            ave_ssim_y = sum(test_results['ssim_y']) / len(test_results['ssim_y'])
+            logger.info('Average PSNR/SSIM( Y ) - {} - x{} - PSNR: {:.2f} dB; SSIM: {:.4f}'.format(result_name, sf, ave_psnr_y, ave_ssim_y))
 
 if __name__ == '__main__':
 
